@@ -1,0 +1,42 @@
+header.bg-indigo-600.p-4
+    .container.mx-auto.flex.justify-between.items-center
+        h1
+            a(href="/").text-2xl.text-white.font-extrabold.text-center Bienes
+                span.font-normal Raices
+ 
+        button(class="block md:hidden text-white", id="menuBtn")
+            svg(width="24" height="24", fill="none", viewBox="0 0 24 24", stroke="currentColor", stroke-width="2", stroke-linecap="round", stroke-linejoin="round")
+                path(d="M4 6h16M4 12h16m-7 6h7", class="w-6 h-6")
+ 
+        nav(class="hidden my-5 md:flex md:items-center md:gap-3 font-bold text-white")
+            a(href="/mis-propiedades") Mis Propiedades
+ 
+            form(action="/auth/cerrar-sesion", method="post")
+                input(type="hidden" name="_csrf" value=csrfToken)
+                input(type="submit" class="bg-blue-800 py-2 px-10 rounded-lg hover:bg-blue-900" value="Cerrar Sesión")
+    
+    nav(class="hidden md:hidden mt-5 p-5 flex-col gap-4 border-t-2 items-center font-bold text-white" id="menuItems")
+            a(href="/mis-propiedades") Mis Propiedades
+ 
+            form(action="/auth/cerrar-sesion", method="post")
+                input(type="hidden" name="_csrf" value=csrfToken)
+                input(type="submit" class="bg-blue-800 py-2 px-10 rounded-lg hover:bg-blue-900" value="Cerrar Sesión")
+ 
+script.
+    const menuBtn = document.getElementById("menuBtn");
+ 
+    if (menuBtn) {
+        menuBtn.addEventListener("click", function() {
+            const menu = document.getElementById("menuItems");
+ 
+            if (menu) {
+                if (menu.classList.contains("hidden")){
+                    menu.classList.add("flex")
+                    menu.classList.remove("hidden")
+                } else {
+                    menu.classList.add("hidden");
+                    menu.classList.remove("flex");
+                }
+            }            
+        });
+    }
